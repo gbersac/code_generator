@@ -19,10 +19,10 @@ class Attribute:
 		self.type = type
 		self.name = name
 
-	def getGetterName():
+	def getGetterName(self):
 		return "get" + name[0].upper() + name[1:]
 
-	def getSetterName():
+	def getSetterName(self):
 		return "set" + name[0].upper() + name[1:]
 
 
@@ -40,15 +40,18 @@ def createFile(targetFolder, fileName, content):
 	print fileName + " created"
 
 def inputAttrs():
-	lstAttr
-	while true:
+	print ""
+	print "Insert all attributes"
+	lstAttr = []
+	while True:
 		attrName = raw_input('Enter attr name: ')
 		if attrName == "":
+			print lstAttr
 			return lstAttr
 		attrType = raw_input('Enter attr type: ')
 		if attrType == "":
 			attrType = DEFAULT_TYPE
-
+		lstAttr.append(Attribute(attrType, attrName))
 
 
 def main():
