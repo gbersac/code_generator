@@ -1,0 +1,34 @@
+\#include "${className}.hpp"
+
+${className}::${className}()
+{
+
+}
+
+${className}::${className}(${className} const &model)
+{
+	*this = model;
+}
+
+${className}::~${className}()
+{
+
+}
+
+std::string	${className}::toString() const
+{
+	std::stringstream ss;
+	ss << "${className}";
+	return ss.str();
+}
+
+${className}&	${className}::operator=(${className} const &copy)
+{
+	return *this;
+}
+
+std::ostream	&operator<<(std::ostream &o, ${className} const &i)
+{
+	o << i.toString();
+	return o;
+}

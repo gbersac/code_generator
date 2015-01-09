@@ -1,0 +1,26 @@
+\#ifndef ${headerName}
+\#define ${headerName}
+
+\#include <string>
+\#include <iostream>
+\#include <sstream>
+
+class ${className}
+{
+public:
+	${className}();
+	${className}(${className} const &);
+	virtual ~${className}();
+
+	std::string	toString()const;
+
+	${className}&	operator=(${className} const &);
+
+
+
+private:
+};
+
+std::ostream	&operator<<(std::ostream &o, ${className} const &i);
+
+\#endif /*${headerName}*/
