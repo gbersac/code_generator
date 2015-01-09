@@ -8,17 +8,19 @@
 class ${className}
 {
 public:
+	//constructors
 	${className}();
 	${className}(${className} const &);
 	virtual ~${className}();
 
+	//getters setters
+
+	//other functions
 	std::string	toString()const;
 
 	${className}&	operator=(${className} const &);
 
-
-
-private:
+protected:
 };
 
 std::ostream	&operator<<(std::ostream &o, ${className} const &i);

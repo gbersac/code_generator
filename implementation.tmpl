@@ -1,5 +1,9 @@
 \#include "${className}.hpp"
 
+/******************************************************************************/
+/* Constructors                                                               */
+/******************************************************************************/
+
 ${className}::${className}()
 {
 
@@ -15,6 +19,14 @@ ${className}::~${className}()
 
 }
 
+/******************************************************************************/
+/* Getters Setters                                                            */
+/******************************************************************************/
+
+/******************************************************************************/
+/* Other Functions                                                            */
+/******************************************************************************/
+
 std::string	${className}::toString() const
 {
 	std::stringstream ss;
@@ -22,12 +34,12 @@ std::string	${className}::toString() const
 	return ss.str();
 }
 
-${className}&	${className}::operator=(${className} const &copy)
+${className}& ${className}::operator=(${className} const &copy)
 {
 	return *this;
 }
 
-std::ostream	&operator<<(std::ostream &o, ${className} const &i)
+std::ostream &operator<<(std::ostream &o, ${className} const &i)
 {
 	o << i.toString();
 	return o;
