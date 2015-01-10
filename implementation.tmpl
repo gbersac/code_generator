@@ -23,6 +23,18 @@ ${className}::~${className}()
 /* Getters Setters                                                            */
 /******************************************************************************/
 
+#for $attr in $lstAttr
+${attr.aType} const& ${className}::${attr.getGetterName()}()const
+{
+	return ${attr.getName()};
+}
+
+void ${className}::${attr.getSetterName()}(${attr.aType} const &val)
+{
+	${attr.getName()} = val;
+}
+
+#end for
 /******************************************************************************/
 /* Other Functions                                                            */
 /******************************************************************************/
@@ -34,8 +46,11 @@ std::string	${className}::toString() const
 	return ss.str();
 }
 
-${className}& ${className}::operator=(${className} const &copy)
+${className}& ${className}::operator=(${className} const &model)
 {
+#for $attr in $lstAttr
+	${attr.getName()} = model.${attr.getName()};
+#end for
 	return *this;
 }
 

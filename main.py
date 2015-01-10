@@ -12,18 +12,24 @@ DEFAULT_TYPE	= "std::string"
 class Attribute:
 	"""docstring for Attribute"""
 
-	type = DEFAULT_TYPE
+	aType = DEFAULT_TYPE
 	name = "name"
 
-	def __init__(self, type, name):
-		self.type = type
-		self.name = name
+	def __init__(self, _aType, _name):
+		self.aType = _aType
+		self.name = _name
+
+	def getName(self):
+		return "_" + self.name
 
 	def getGetterName(self):
-		return "get" + name[0].upper() + name[1:]
+		return "get" + self.name[0].upper() + self.name[1:]
 
 	def getSetterName(self):
-		return "set" + name[0].upper() + name[1:]
+		return "set" + self.name[0].upper() + self.name[1:]
+
+	def __str__(self):
+	     return "{" + self.aType + ", " + self.name + "}"
 
 
 def createFile(targetFolder, fileName, content):
@@ -41,12 +47,13 @@ def createFile(targetFolder, fileName, content):
 
 def inputAttrs():
 	print ""
-	print "Insert all attributes"
+	print "Insert all attributes ('_' will be added)"
+	print "Default type is : " +  DEFAULT_TYPE
 	lstAttr = []
 	while True:
 		attrName = raw_input('Enter attr name: ')
 		if attrName == "":
-			print lstAttr
+			print "attrs: ".join(str(v) for v in lstAttr)
 			return lstAttr
 		attrType = raw_input('Enter attr type: ')
 		if attrType == "":
@@ -56,10 +63,11 @@ def inputAttrs():
 
 def main():
 	className = raw_input('Enter class name: ')
-	attrs = inputAttrs()
+	lstAttr = inputAttrs()
 
 	nameSpace = {'headerName': className.upper() + HEADER_EXT,
-			'className': className}
+			'className': className,
+			'lstAttr': lstAttr}
 	t = Template(file = sys.path[0] + "/header.tmpl", searchList=[nameSpace])
 	createFile(INC_FOLDER, className + HPP_EXT, t)
 	t = Template(file = sys.path[0] + "/implementation.tmpl", searchList=[nameSpace])

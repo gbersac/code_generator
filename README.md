@@ -22,7 +22,7 @@ alias class="python ~/progs/cpp_class_generator/main.py"
 ## Customisation
 The templates are header.tmpl and inplementation.tmpl. Change them as you want !
 
-My modifiing the variables at the bottom of the main.py file, you can :
+By modifying the variables at the bottom of the main.py file, you can :
 * change the extension of the file
 * the target directory of the created files
 * the header guard extension

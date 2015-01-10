@@ -1,7 +1,6 @@
 \#ifndef ${headerName}
 \#define ${headerName}
 
-\#include <string>
 \#include <iostream>
 \#include <sstream>
 
@@ -14,6 +13,10 @@ public:
 	virtual ~${className}();
 
 	//getters setters
+#for $attr in $lstAttr
+	${attr.aType} const&	${attr.getGetterName()}()const;
+	void		${attr.getSetterName()}(${attr.aType} const &);
+#end for
 
 	//other functions
 	std::string	toString()const;
@@ -21,6 +24,9 @@ public:
 	${className}&	operator=(${className} const &);
 
 protected:
+#for $attr in $lstAttr
+	${attr.aType}	${attr.getName()};
+#end for
 };
 
 std::ostream	&operator<<(std::ostream &o, ${className} const &i);
