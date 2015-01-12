@@ -45,15 +45,14 @@ def createFile(targetFolder, fileName, content):
 	f.close()
 	print fileName + " created"
 
-def inputAttrs():
+def inputAttrs(className):
 	print ""
-	print "Insert all attributes ('_' will be added)"
+	print className + ": insert all attributes ('_' will be added)"
 	print "Default type is : " +  DEFAULT_TYPE
 	lstAttr = []
 	while True:
 		attrName = raw_input('Enter attr name: ')
 		if attrName == "":
-			print "attrs: ".join(str(v) for v in lstAttr)
 			return lstAttr
 		attrType = raw_input('Enter attr type: ')
 		if attrType == "":
@@ -63,7 +62,7 @@ def inputAttrs():
 
 def main():
 	className = raw_input('Enter class name: ')
-	lstAttr = inputAttrs()
+	lstAttr = inputAttrs(className)
 
 	nameSpace = {'headerName': className.upper() + HEADER_EXT,
 			'className': className,

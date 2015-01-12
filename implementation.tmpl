@@ -42,11 +42,23 @@ void ${className}::${attr.getSetterName()}(${attr.aType} const &val)
 std::string	${className}::toString() const
 {
 	std::stringstream ss;
+#if len($lstAttr) > 0
+	ss << "${className} {" <<
+#for $attr in $lstAttr
+			"${attr.name}[" <<  ${attr.getName()} << "] " <<
+#end for
+			"}";
+#else
 	ss << "${className}";
+#end if
 	return ss.str();
 }
 
+#if len($lstAttr) > 0
 ${className}& ${className}::operator=(${className} const &model)
+#else
+${className}& ${className}::operator=(${className} const &)
+#end if
 {
 #for $attr in $lstAttr
 	${attr.getName()} = model.${attr.getName()};
