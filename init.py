@@ -1,0 +1,6 @@
+HEADER_EXT		= "_HEADER"
+HPP_EXT			= ".hpp"
+CPP_EXT			= ".cpp"
+SRC_FOLDER		= "src"
+INC_FOLDER		= "inc"
+DEFAULT_TYPE	= "std::string"

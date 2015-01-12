@@ -1,20 +1,20 @@
-\#include "${className}.hpp"
+\#include "${class.name}.hpp"
 
 /******************************************************************************/
 /* Constructors                                                               */
 /******************************************************************************/
 
-${className}::${className}()
+${class.name}::${class.name}()
 {
 
 }
 
-${className}::${className}(${className} const &model)
+${class.name}::${class.name}(${class.name} const &model)
 {
 	*this = model;
 }
 
-${className}::~${className}()
+${class.name}::~${class.name}()
 {
 
 }
@@ -23,13 +23,13 @@ ${className}::~${className}()
 /* Getters Setters                                                            */
 /******************************************************************************/
 
-#for $attr in $lstAttr
-${attr.aType} const& ${className}::${attr.getGetterName()}()const
+#for $attr in $class.lstAttr
+${attr.aType} const& ${class.name}::${attr.getGetterName()}()const
 {
 	return ${attr.getName()};
 }
 
-void ${className}::${attr.getSetterName()}(${attr.aType} const &val)
+void ${class.name}::${attr.getSetterName()}(${attr.aType} const &val)
 {
 	${attr.getName()} = val;
 }
@@ -39,34 +39,34 @@ void ${className}::${attr.getSetterName()}(${attr.aType} const &val)
 /* Other Functions                                                            */
 /******************************************************************************/
 
-std::string	${className}::toString() const
+std::string	${class.name}::toString() const
 {
 	std::stringstream ss;
-#if len($lstAttr) > 0
-	ss << "${className} {" <<
-#for $attr in $lstAttr
+#if len($class.lstAttr) > 0
+	ss << "${class.name} {" <<
+#for $attr in $class.lstAttr
 			"${attr.name}[" <<  ${attr.getName()} << "] " <<
 #end for
 			"}";
 #else
-	ss << "${className}";
+	ss << "${class.name}";
 #end if
 	return ss.str();
 }
 
-#if len($lstAttr) > 0
-${className}& ${className}::operator=(${className} const &model)
+#if len($class.lstAttr) > 0
+${class.name}& ${class.name}::operator=(${class.name} const &model)
 #else
-${className}& ${className}::operator=(${className} const &)
+${class.name}& ${class.name}::operator=(${class.name} const &)
 #end if
 {
-#for $attr in $lstAttr
+#for $attr in $class.lstAttr
 	${attr.getName()} = model.${attr.getName()};
 #end for
 	return *this;
 }
 
-std::ostream &operator<<(std::ostream &o, ${className} const &i)
+std::ostream &operator<<(std::ostream &o, ${class.name} const &i)
 {
 	o << i.toString();
 	return o;

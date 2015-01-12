@@ -1,19 +1,19 @@
-\#ifndef ${headerName}
-\#define ${headerName}
+\#ifndef ${class.getGuard()}
+\#define ${class.getGuard()}
 
 \#include <iostream>
 \#include <sstream>
 
-class ${className}
+class ${class.name}
 {
 public:
 	//constructors
-	${className}();
-	${className}(${className} const &);
-	virtual ~${className}();
+	${class.name}();
+	${class.name}(${class.name} const &);
+	virtual ~${class.name}();
 
 	//getters setters
-#for $attr in $lstAttr
+#for $attr in $class.lstAttr
 	${attr.aType} const&	${attr.getGetterName()}()const;
 	void		${attr.getSetterName()}(${attr.aType} const &);
 #end for
@@ -21,14 +21,14 @@ public:
 	//other functions
 	std::string	toString()const;
 
-	${className}&	operator=(${className} const &);
+	${class.name}&	operator=(${class.name} const &);
 
 protected:
-#for $attr in $lstAttr
+#for $attr in $class.lstAttr
 	${attr.aType}	${attr.getName()};
 #end for
 };
 
-std::ostream	&operator<<(std::ostream &o, ${className} const &i);
+std::ostream	&operator<<(std::ostream &o, ${class.name} const &i);
 
-\#endif /*${headerName}*/
+\#endif /*${class.getGuard()}*/
