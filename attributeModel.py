@@ -30,18 +30,14 @@ class Attribute:
 			self.aType = init.DEFAULT_TYPE
 			return
 		if re.match(expandRegex(regexConst), strg):
-			print "###constant"
 			self.isConst = True
 			strg = re.sub(regexConst, "", strg)
 		if re.match(expandRegex(regexPointer), strg):
-			print "###ptr"
 			self.ptrType = PointerType.POINTER
 			strg = re.sub(regexPointer, "", strg)
 		if re.match(expandRegex(regexReference), strg):
-			print "###ref"
 			self.ptrType = PointerType.REFERENCE
 			strg = re.sub(regexReference, "", strg)
-		print "result: " + strg
 		self.aType = strg.strip()
 
 	def getName(self):
