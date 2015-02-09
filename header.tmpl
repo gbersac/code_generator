@@ -15,7 +15,9 @@ public:
 	//getters setters
 #for $attr in $class.lstAttr
 	${attr.getGetterRetType}	${attr.getGetterName()}()const;
+#if not $attr.isConst
 	void		${attr.getSetterName()}(${attr.getSetterArgType});
+#end if
 #end for
 
 	//other functions

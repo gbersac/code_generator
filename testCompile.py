@@ -37,14 +37,16 @@ class TestCompileFunctions(unittest.TestCase):
 	def basicClass(self, typeAttr, nameAttr):
 		cl = Class("Aaa" + str(self.testNum))
 		self.testNum += 1
-		cl.addAttr(typeAttr, nameAttr)
-		if len(cl.lstAttr) > 1:
-			print cl.lstAttr[1].getType()
+		if nameAttr != "":
+			cl.addAttr(typeAttr, nameAttr)
 		return cl
 
 	def testAttribute(self):
+		self.isCompiling(self.basicClass("", ""))
 		self.isCompiling(self.basicClass("int", "param1"))
 		self.isCompiling(self.basicClass("int*", "param2"))
+		self.isCompiling(self.basicClass("int const", "param3"))
+		self.isCompiling(self.basicClass("int const*", "param4"))
 
 if __name__ == '__main__':
 	unittest.main()

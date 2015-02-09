@@ -27,6 +27,8 @@ class TestSequenceFunctions(unittest.TestCase):
 		self.assertEqual(att.ptrType, PointerType.POINTER)
 		att = Attribute("aaa*", "bbb")
 		self.assertEqual(att.ptrType, PointerType.POINTER)
+		att = Attribute("aaa const*", "bbb")
+		self.assertEqual(att.ptrType, PointerType.POINTER)
 		att = Attribute("aaa", "bbb")
 		self.assertEqual(att.ptrType, PointerType.NONE)
 

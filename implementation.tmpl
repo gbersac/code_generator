@@ -5,11 +5,17 @@
 /******************************************************************************/
 
 ${class.name}::${class.name}()
+#if $class.initList() != ""
+		: ${class.initList()}
+#end if
 {
 
 }
 
 ${class.name}::${class.name}(${class.name} const &model)
+#if $class.initCopyList() != ""
+		: ${class.initCopyList()}
+#end if
 {
 	*this = model;
 }
@@ -29,11 +35,13 @@ ${attr.getGetterRetType} ${class.name}::${attr.getGetterName()}()const
 	return ${attr.getName()};
 }
 
+#if not $attr.isConst
 void ${class.name}::${attr.getSetterName()}(${attr.getSetterArgType} val)
 {
 	${attr.getName()} = val;
 }
 
+#end if
 #end for
 /******************************************************************************/
 /* Other Functions                                                            */
@@ -61,7 +69,9 @@ ${class.name}& ${class.name}::operator=(${class.name} const &)
 #end if
 {
 #for $attr in $class.lstAttr
+#if not $attr.isConst
 	${attr.getName()} = model.${attr.getName()};
+#end if
 #end for
 	return *this;
 }

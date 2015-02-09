@@ -31,7 +31,7 @@ class Attribute:
 			return
 		if re.match(expandRegex(regexConst), strg):
 			self.isConst = True
-			strg = re.sub(regexConst, "", strg)
+			strg = re.sub("const", "", strg)
 		if re.match(expandRegex(regexPointer), strg):
 			self.ptrType = PointerType.POINTER
 			strg = re.sub(regexPointer, "", strg)
@@ -44,11 +44,15 @@ class Attribute:
 		return "_" + self.name
 
 	def getType(self):
-		print self.ptrType
+		print "ptrType: " + str(self.ptrType) + " isConst: " + str(self.isConst)
 		if self.ptrType == PointerType.POINTER:
+			if self.isConst:
+				return self.aType + " const*"
 			return self.aType + "*"
 		if self.ptrType == PointerType.REFERENCE:
 			return self.aType + "&"
+		if self.isConst:
+			return self.aType + " const"
 		return self.aType
 
 	def getGetterName(self):
@@ -59,13 +63,29 @@ class Attribute:
 
 	def getGetterRetType(self):
 		if self.ptrType == PointerType.POINTER:
+			if self.isConst:
+				return self.aType + " const*"
 			return self.aType + "*\t"
 		return self.aType + " const&"
 
 	def getSetterArgType(self):
 		if self.ptrType == PointerType.POINTER:
+			if self.isConst:
+				return self.aType + " const*"
 			return self.aType + "*"
 		return self.aType + " const&"
+
+	"""Return a string defining the default value of the attribute"""
+	def defaultValue(self):
+		if self.aType in ["int", "long", "unsigned", "short"]:
+			return "0"
+		if self.aType in ["float", "double"]:
+			return "0.0"
+		if self.aType in ["char"]:
+			return "\\0"
+		if self.aType in ["std::string", "string"]:
+			return "\"\""
+		return ""
 
 	def __str__(self):
 	     return "{" + self.aType + ", " + self.name + "}"
