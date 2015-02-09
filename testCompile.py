@@ -16,8 +16,8 @@ class TestCompileFunctions(unittest.TestCase):
 
 	def setUp(self):
 		self.testNum = 0
-		self.headerPath = "../" + OutputTemplate.outputImplementation
-		self.implPath = "../" + OutputTemplate.outputHeader
+		self.implPath = "../" + OutputTemplate.outputImplementation
+		self.headerPath = "../" + OutputTemplate.outputHeader
 		if not os.path.exists(TEST_DIR):
 			os.makedirs(TEST_DIR)
 		os.chdir(TEST_DIR)
@@ -41,6 +41,11 @@ class TestCompileFunctions(unittest.TestCase):
 			cl.addAttr(typeAttr, nameAttr)
 		return cl
 
+	def basicChildClass(self, typeAttr, nameAttr):
+		cl = self.basicClass(typeAttr, nameAttr)
+		cl.parentClass = "Aaa0"
+		return cl
+
 	def testAttribute(self):
 		self.isCompiling(self.basicClass("", ""))
 		self.isCompiling(self.basicClass("int", "param1"))
@@ -48,6 +53,10 @@ class TestCompileFunctions(unittest.TestCase):
 		self.isCompiling(self.basicClass("int const", "param3"))
 		self.isCompiling(self.basicClass("int const*", "param4"))
 		self.isCompiling(self.basicClass("int ***", "param5"))
+		self.isCompiling(self.basicChildClass("", ""))
+
+	def testInheritance(self):
+		pass
 
 if __name__ == '__main__':
 	unittest.main()

@@ -18,9 +18,15 @@ def inputAttrs(myClass):
 		attrType = raw_input('Enter attr type: ')
 		myClass.addAttr(attrType, attrName)
 
+def inputParent(myClass):
+	print ""
+	myClass.parentClass = raw_input('Enter parent class name: ')
+	print ""
+
 def main():
 	className = raw_input('Enter class name: ')
 	myClass = Class(className)
+	inputParent(myClass)
 	inputAttrs(myClass)
 	ot = OutputTemplate(myClass)
 	ot.process()

@@ -4,7 +4,15 @@
 \#include <iostream>
 \#include <sstream>
 
+#if $class.parentClass != ""
+\#include "$class.parentHeader"
+
+#end if
+#if $class.parentClass != ""
+class ${class.name} :  public $class.parentClass
+#else
 class ${class.name}
+#end if
 {
 public:
 	//constructors
