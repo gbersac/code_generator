@@ -5,8 +5,8 @@ from Cheetah.Template import Template
 
 class OutputTemplate:
 
-	outputImplementation = sys.path[0] + "/header.tmpl"
-	outputHeader = sys.path[0] + "/implementation.tmpl"
+	outputHeader = sys.path[0] + "/header.tmpl"
+	outputImplementation = sys.path[0] + "/implementation.tmpl"
 
 	def __init__(self, myClass):
 		self.cl = myClass
