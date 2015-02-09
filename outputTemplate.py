@@ -4,29 +4,29 @@ import init
 from Cheetah.Template import Template
 
 class OutputTemplate:
-	cl
-	outputImplementation
-	outputHeader
 
-	"""docstring for outputTemplate"""
-	def pathTemplate(self, tmplName):
-		modpath = __file__
-		modpath = modpath[:-1]
-		print "###" + os.path.abspath(__file__)
-		print "###" + os.path.split(os.path.abspath(__file__))[0]
-		dirName = os.path.split(os.path.abspath(__file__))[0]
-		outputImplementation = dirName + "header.tmpl"
-		outputHeader = dirName + "implementation.tmpl"
-		return  + "/" + tmplName
+	# """docstring for outputTemplate"""
+	# def pathTemplate(self, tmplName):
+	# 	modpath = __file__
+	# 	modpath = modpath[:-1]
+	# 	print "###" + os.path.abspath(__file__)
+	# 	print "###" + os.path.split(os.path.abspath(__file__))[0]
+	# 	dirName = os.path.split(os.path.abspath(__file__))[0]
+	# 	return  + "/" + tmplName
+
+	outputImplementation = "header.tmpl"
+	outputHeader = "implementation.tmpl"
 
 	def __init__(self, myClass):
-		cl = myClass
+		self.cl = myClass
 
-		nameSpace = {'class': myClass}
-		t = Template(file = outputHeader, searchList=[nameSpace])
-		self.createFile(init.INC_FOLDER, myClass.name + init.HPP_EXT, t)
-		t = Template(file = outputImplementation, searchList=[nameSpace])
-		self.createFile(init.SRC_FOLDER, myClass.name + init.CPP_EXT, t)
+
+	def process(self):
+		nameSpace = {'class': self.cl}
+		t = Template(file = self.outputHeader, searchList=[nameSpace])
+		self.createFile(init.INC_FOLDER, self.cl.name + init.HPP_EXT, t)
+		t = Template(file = self.outputImplementation, searchList=[nameSpace])
+		self.createFile(init.SRC_FOLDER, self.cl.name + init.CPP_EXT, t)
 
 	def createFile(slef, targetFolder, fileName, content):
 		if os.path.exists(targetFolder):
