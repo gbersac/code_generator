@@ -49,7 +49,6 @@ class Attribute:
 		return ''.join(['*' for s in xrange(self.nbPtr)])
 
 	def getType(self):
-		print "ptrType: " + str(self.ptrType) + " isConst: " + str(self.isConst)
 		if self.ptrType == PointerType.POINTER:
 			if self.isConst:
 				return self.aType + " const" + self.expandPrt()

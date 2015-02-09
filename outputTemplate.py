@@ -5,12 +5,11 @@ from Cheetah.Template import Template
 
 class OutputTemplate:
 
-	outputImplementation = "header.tmpl"
-	outputHeader = "implementation.tmpl"
+	outputImplementation = sys.path[0] + "/header.tmpl"
+	outputHeader = sys.path[0] + "/implementation.tmpl"
 
 	def __init__(self, myClass):
 		self.cl = myClass
-
 
 	def process(self):
 		nameSpace = {'class': self.cl}
@@ -19,7 +18,7 @@ class OutputTemplate:
 		t = Template(file = self.outputImplementation, searchList=[nameSpace])
 		self.createFile(init.SRC_FOLDER, self.cl.name + init.CPP_EXT, t)
 
-	def createFile(slef, targetFolder, fileName, content):
+	def createFile(self, targetFolder, fileName, content):
 		if os.path.exists(targetFolder):
 			fileName = targetFolder + "/" + fileName
 		#check is the file exist

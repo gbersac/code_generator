@@ -22,6 +22,7 @@ def main():
 	className = raw_input('Enter class name: ')
 	myClass = Class(className)
 	inputAttrs(myClass)
-	OutputTemplate(myClass)
+	ot = OutputTemplate(myClass)
+	ot.process()
 
 main()
