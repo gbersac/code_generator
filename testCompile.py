@@ -22,9 +22,9 @@ class TestCompileFunctions(unittest.TestCase):
 			os.makedirs(TEST_DIR)
 		os.chdir(TEST_DIR)
 
-	def tearDown(self):
-		os.chdir("..")
-		shutil.rmtree(TEST_DIR)
+	# def tearDown(self):
+	# 	os.chdir("..")
+	# 	shutil.rmtree(TEST_DIR)
 
 	def isCompiling(self, cl):
 		ot = OutputTemplate(cl)
@@ -47,6 +47,7 @@ class TestCompileFunctions(unittest.TestCase):
 		self.isCompiling(self.basicClass("int*", "param2"))
 		self.isCompiling(self.basicClass("int const", "param3"))
 		self.isCompiling(self.basicClass("int const*", "param4"))
+		self.isCompiling(self.basicClass("int ***", "param5"))
 
 if __name__ == '__main__':
 	unittest.main()

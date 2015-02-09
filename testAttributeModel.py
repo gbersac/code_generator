@@ -31,6 +31,8 @@ class TestSequenceFunctions(unittest.TestCase):
 		self.assertEqual(att.ptrType, PointerType.POINTER)
 		att = Attribute("aaa", "bbb")
 		self.assertEqual(att.ptrType, PointerType.NONE)
+		att = Attribute("aaa***", "bbb")
+		self.assertEqual(att.nbPtr, 3)
 
 	def testReference(self):
 		att = Attribute("&aaa", "bbb")
