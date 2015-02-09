@@ -14,8 +14,8 @@ public:
 
 	//getters setters
 #for $attr in $class.lstAttr
-	${attr.aType} const&	${attr.getGetterName()}()const;
-	void		${attr.getSetterName()}(${attr.aType} const &);
+	${attr.getGetterRetType}	${attr.getGetterName()}()const;
+	void		${attr.getSetterName()}(${attr.getSetterArgType});
 #end for
 
 	//other functions
@@ -25,7 +25,7 @@ public:
 
 protected:
 #for $attr in $class.lstAttr
-	${attr.aType}	${attr.getName()};
+	${attr.getType}	${attr.getName()};
 #end for
 };
 

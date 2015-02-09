@@ -24,12 +24,12 @@ ${class.name}::~${class.name}()
 /******************************************************************************/
 
 #for $attr in $class.lstAttr
-${attr.aType} const& ${class.name}::${attr.getGetterName()}()const
+${attr.getGetterRetType} ${class.name}::${attr.getGetterName()}()const
 {
 	return ${attr.getName()};
 }
 
-void ${class.name}::${attr.getSetterName()}(${attr.aType} const &val)
+void ${class.name}::${attr.getSetterName()}(${attr.getSetterArgType} val)
 {
 	${attr.getName()} = val;
 }

@@ -5,15 +5,6 @@ from Cheetah.Template import Template
 
 class OutputTemplate:
 
-	# """docstring for outputTemplate"""
-	# def pathTemplate(self, tmplName):
-	# 	modpath = __file__
-	# 	modpath = modpath[:-1]
-	# 	print "###" + os.path.abspath(__file__)
-	# 	print "###" + os.path.split(os.path.abspath(__file__))[0]
-	# 	dirName = os.path.split(os.path.abspath(__file__))[0]
-	# 	return  + "/" + tmplName
-
 	outputImplementation = "header.tmpl"
 	outputHeader = "implementation.tmpl"
 

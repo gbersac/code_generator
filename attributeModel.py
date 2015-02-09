@@ -43,11 +43,29 @@ class Attribute:
 	def getName(self):
 		return "_" + self.name
 
+	def getType(self):
+		print self.ptrType
+		if self.ptrType == PointerType.POINTER:
+			return self.aType + "*"
+		if self.ptrType == PointerType.REFERENCE:
+			return self.aType + "&"
+		return self.aType
+
 	def getGetterName(self):
 		return "get" + self.name[0].upper() + self.name[1:]
 
 	def getSetterName(self):
 		return "set" + self.name[0].upper() + self.name[1:]
+
+	def getGetterRetType(self):
+		if self.ptrType == PointerType.POINTER:
+			return self.aType + "*\t"
+		return self.aType + " const&"
+
+	def getSetterArgType(self):
+		if self.ptrType == PointerType.POINTER:
+			return self.aType + "*"
+		return self.aType + " const&"
 
 	def __str__(self):
 	     return "{" + self.aType + ", " + self.name + "}"
