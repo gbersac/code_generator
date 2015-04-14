@@ -1,10 +1,13 @@
+#! /usr/bin/python
 import os
 import sys
 import init
+import argparse
 
 from classModel import Class
 from attributeModel import Attribute
 from outputTemplate import OutputTemplate
+
 
 
 def inputAttrs(myClass):
@@ -23,7 +26,16 @@ def inputParent(myClass):
 	myClass.parentClass = raw_input('Enter parent class name: ')
 	print ""
 
+def argParser():
+	parser = argparse.ArgumentParser(description='Generate code from template.')
+	parser.add_argument('--template',
+			help='name of the template to use',
+			default='cpp_class ')
+	return parser.parse_args()
+
 def main():
+	options = argParser()
+	print options
 	className = raw_input('Enter class name: ')
 	myClass = Class(className)
 	inputParent(myClass)
