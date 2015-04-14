@@ -1,5 +1,5 @@
-# cpp_class_generator
-A python prog to authomatically create c++ class
+# Code generator
+A python template engine for generating code for programming language. The program is packed with template for : c++ class, c++ template (todo) and rust struct (todo).
 
 It use the [Cheetah template engine](http://www.cheetahtemplate.org/index.html).
 
@@ -22,9 +22,10 @@ alias class="python ~/progs/cpp_class_generator/main.py"
 ```
 
 ## Customisation
-The templates are header.tmpl and inplementation.tmpl. Change them as you want !
+The templates are header.tmpl and implementation.tmpl. Change them as you want !
 
-By modifying the variables at the bottom of the main.py file, you can :
+By modifying the init.py file, you can :
 * change the extension of the file
 * the target directory of the created files
 * the header guard extension
+* the default type
