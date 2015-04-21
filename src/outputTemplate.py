@@ -21,7 +21,7 @@ class OutputTemplate:
 	def createFile(self, targetFolder, fileName, content):
 		if os.path.exists(targetFolder):
 			fileName = targetFolder + "/" + fileName
-		#check is the file exist
+		#check if the file exist
 		if os.path.exists(fileName):
 			print "The file " + fileName + " already exist. Nothing done."
 			return
@@ -29,4 +29,4 @@ class OutputTemplate:
 		f = open(fileName, "a")
 		f.write(str(content))
 		f.close()
-		print fileName + " created"
+		# print(fileName + " created")

@@ -1,5 +1,5 @@
 import unittest
-from attributeModel import Attribute, PointerType
+from src.attributeModel import Attribute, PointerType
 
 class TestSequenceFunctions(unittest.TestCase):
 	def testConst(self):

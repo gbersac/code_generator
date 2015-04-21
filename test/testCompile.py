@@ -1,13 +1,13 @@
 import unittest
 import os
 import shutil
-import init
 import subprocess
 import shlex
+import src.init
 
-from attributeModel import Attribute, PointerType
-from classModel import Class
-from outputTemplate import OutputTemplate
+from src.attributeModel import Attribute, PointerType
+from src.classModel import Class
+from src.outputTemplate import OutputTemplate
 
 TEST_DIR = "test_dir"
 CMD_LINE = "g++ -Wall -Wextra -Werror -c "
@@ -16,11 +16,11 @@ class TestCompileFunctions(unittest.TestCase):
 
 	def setUp(self):
 		self.testNum = 0
-		self.implPath = "../" + OutputTemplate.outputImplementation
-		self.headerPath = "../" + OutputTemplate.outputHeader
 		if not os.path.exists(TEST_DIR):
 			os.makedirs(TEST_DIR)
 		os.chdir(TEST_DIR)
+		self.headerPath = "../src/" + "header.tmpl"
+		self.implPath = "../src/" + "implementation.tmpl" 
 
 	def tearDown(self):
 		os.chdir("..")
@@ -31,7 +31,7 @@ class TestCompileFunctions(unittest.TestCase):
 		ot.outputImplementation = self.implPath
 		ot.outputHeader = self.headerPath
 		ot.process()
-		cmd = shlex.split(CMD_LINE + cl.name + init.CPP_EXT)
+		cmd = shlex.split(CMD_LINE + cl.name + src.init.CPP_EXT)
 		self.assertEqual(subprocess.call(cmd), 0)
 
 	def basicClass(self, typeAttr, nameAttr):
@@ -47,13 +47,13 @@ class TestCompileFunctions(unittest.TestCase):
 		return cl
 
 	def testAttribute(self):
-		self.isCompiling(self.basicClass("", ""))
-		self.isCompiling(self.basicClass("int", "param1"))
-		self.isCompiling(self.basicClass("int*", "param2"))
-		self.isCompiling(self.basicClass("int const", "param3"))
-		self.isCompiling(self.basicClass("int const*", "param4"))
-		self.isCompiling(self.basicClass("int ***", "param5"))
-		self.isCompiling(self.basicChildClass("", ""))
+	    self.isCompiling(self.basicClass("", ""))
+	    self.isCompiling(self.basicClass("int", "param1"))
+	    self.isCompiling(self.basicClass("int*", "param2"))
+	    self.isCompiling(self.basicClass("int const", "param3"))
+	    self.isCompiling(self.basicClass("int const*", "param4"))
+	    self.isCompiling(self.basicClass("int ***", "param5"))
+	    self.isCompiling(self.basicChildClass("", ""))
 
 	def testInheritance(self):
 		pass
