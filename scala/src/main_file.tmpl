@@ -1,0 +1,17 @@
+package models
+
+import scala.xml.Node
+
+import play.api.libs.json._
+
+import anorm.RowParser
+import anorm.SqlParser._
+import jto.validation.{From, Path, Rule, ValidationError}
+import org.joda.time.DateTime
+import org.joda.time.format.DateTimeFormat
+
+import models.Constants.{OMDEStatut, StatutScore}
+import services.WriteError
+import utils.{Anorm, JtoValidationUtils}
+
+${class.toScalaCaseClass()}

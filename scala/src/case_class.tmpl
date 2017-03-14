@@ -1,0 +1,13 @@
+case class ${class.typeName()}(${class.attributeList()})
+
+object ${class.typeName()} {
+  implicit val fmt = Json.format[${class.typeName()}]
+
+  implicit lazy val xmlRule: Rule[Node, ${class.typeName()}] = From[Node] { __ =>
+    import jto.validation.xml.Rules._
+    implicit val dateTimeTule = JtoValidationUtils.dateTimeXmlRule(OMDEMessage.dateFormatterOMDE)
+
+    (
+${class.childsXmlValidator()}
+    )(${class.typeName()}.apply)
+  }
