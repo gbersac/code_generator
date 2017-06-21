@@ -1,13 +1,23 @@
-case class ${class.typeName()}(${class.attributeList()})
+case class ${class.className()}(${class.attributeList()})
 
-object ${class.typeName()} {
-  implicit val fmt = Json.format[${class.typeName()}]
-
-  implicit lazy val xmlRule: Rule[Node, ${class.typeName()}] = From[Node] { __ =>
+object ${class.className()} {
+  implicit lazy val xmlRule: Rule[Node, ${class.className()}] = From[Node] { __ =>
     import jto.validation.xml.Rules._
-    implicit val dateTimeTule = JtoValidationUtils.dateTimeXmlRule(OMDEMessage.dateFormatterOMDE)
-
-    (
+#if $class.hasDateChild()
+    implicit val dateTimeRule = JtoValidationUtils.dateTimeXmlRule(dateFormatterOMDE)
+    implicit val dateTimeOptionRule = JtoValidationUtils.dateTimeOrOptionXmlRule(dateFormatterOMDE)
+    implicit val dateTimeNaissanceRule = JtoValidationUtils.dateTimeXmlRule(dateNaissanceFormatterOMDE)
+    implicit val dateTimeNaissanceOptionRule = JtoValidationUtils.dateTimeOrOptionXmlRule(dateNaissanceFormatterOMDE)
+#end if
+#if $class.hasYesNoChild()
+    implicit val ouiNonRule = models.Constants.OuiNon.xmlToBooleanRule
+    implicit val ouiNonOptionRule = models.Constants.OuiNon.xmlToOptionalBooleanRule
+#end if
 ${class.childsXmlValidator()}
-    )(${class.typeName()}.apply)
   }
+
+#if $class.level != 0
+${class.innerClassStr()}
+#end if
+  implicit val fmt = Json.format[${class.className()}]
+}

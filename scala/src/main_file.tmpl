@@ -1,17 +1,12 @@
-package models
+package nfcnb.integration.omde.domain.models.xml
 
 import scala.xml.Node
 
-import play.api.libs.json._
+import play.api.libs.json.Json
 
-import anorm.RowParser
-import anorm.SqlParser._
-import jto.validation.{From, Path, Rule, ValidationError}
+import jto.validation.{From, Rule}
 import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
 
-import models.Constants.{OMDEStatut, StatutScore}
-import services.WriteError
-import utils.{Anorm, JtoValidationUtils}
+import utils.JtoValidationUtils
 
 ${class.toScalaCaseClass()}
